@@ -48,7 +48,7 @@ var playState = {
 	},
 
 	getColision: function(){
-		game.state.start('menu');
+		game.state.start('gameover');
 	},
 
 	generateKaktus: function(){

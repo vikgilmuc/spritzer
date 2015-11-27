@@ -1,6 +1,6 @@
 var menuState = {
 	create: function() {
-		var nameLabel = game.add.text(80,80, 'SPRITZER', { font: '50px Arial', fill: '#ffffff'});
+		var nameLabel = game.add.text(80,80, 'SPRITZER', { font: '50px Arial', fill: 'red'});
 		var nameLabel = game.add.text(80,200, 'Press "S" to start!', { font: '50px Arial', fill: 'red'});
 
 		

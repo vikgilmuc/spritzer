@@ -8,6 +8,7 @@ var kaktusGroup;
 
 game.state.add('menu', menuState);
 game.state.add('play', playState);
+game.state.add('gameover', gameOverState);
 game.state.start('menu');
 
 /**
