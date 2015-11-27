@@ -1,4 +1,4 @@
-var game = new Phaser.Game(800, 450, Phaser.AUTO, '', { preload: preload, create: create, update: update });
+var game = new Phaser.Game(1024, 576, Phaser.AUTO, '', { preload: preload, create: create, update: update });
 var cursors;
 var player;
 var ground;
@@ -22,8 +22,10 @@ function create() {
     cursors = game.input.keyboard.createCursorKeys();
 
     //POSICION X Y, TAMAÑO X, Y
-    ground = game.add.tileSprite(0, 400, 335, 112, 'pattern');
+    ground = game.add.tileSprite(0, 450, 1024, 32, 'pattern');
     ground.autoScroll(-50, 0);
+    game.physics.arcade.enableBody(ground);
+    ground.body.allowGravity = false;   
 }
 
 function update() {
@@ -33,7 +35,7 @@ function update() {
 
     if (cursors.left.isDown)
     {        
-        player.body.velocity.y = 350;        
+        player.body.velocity.y = 400;        
     }
 
 
