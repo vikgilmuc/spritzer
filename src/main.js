@@ -1,43 +1,39 @@
 var game = new Phaser.Game(800, 450, Phaser.AUTO, '', { preload: preload, create: create, update: update });
 var cursors;
 var player;
+var ground;
 function preload() {
 	game.load.image('balloon', 'assets/balloon.png');
     game.load.image('kaktus', 'assets/cactus.png');    
+    game.load.image('pattern', 'assets/pattern.png'); 
 }
 
-function create() {
-	 //  We're going to be using physics, so enable the Arcade Physics system
+function create() {	 
     game.physics.startSystem(Phaser.Physics.ARCADE);
+    game.stage.backgroundColor = "0xffffff";
 
-    //  A simple background for our game
-    //game.add.sprite(0, 0, 'kaktus');
+    player = game.add.sprite(60, game.world.height - 150, 'balloon');
 
-    //var player;
-
-    player = game.add.sprite(32, game.world.height - 150, 'balloon');
     game.physics.arcade.enable(player);
     player.body.bounce.y = 0.1;
-    player.body.gravity.y = -300;
+    player.body.gravity.y = -600;
     player.body.collideWorldBounds = true;
 
-cursors = game.input.keyboard.createCursorKeys();
+    cursors = game.input.keyboard.createCursorKeys();
 
-	console.log(cursors);
+    //POSICION X Y, TAMAÑO X, Y
+    ground = game.add.tileSprite(0, 400, 335, 112, 'pattern');
+    ground.autoScroll(-50, 0);
 }
 
 function update() {
 
-	//game.physics.arcade.collide(player, platforms);
+	game.physics.arcade.collide(player, ground);
 
-	//player.body.velocity.y = 10;
 
     if (cursors.left.isDown)
-    {
-        //  Move to the left
-        player.body.velocity.y = 150;
-        console.log("pulsa");
-        //player.animations.play('left');
+    {        
+        player.body.velocity.y = 350;        
     }
 
 
