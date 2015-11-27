@@ -1,10 +1,16 @@
-var game = new Phaser.Game(1024, 576, Phaser.AUTO, '', { preload: preload, create: create, update: update });
+var game = new Phaser.Game(1024, 576, Phaser.AUTO, '');
 var cursors;
 var player;
 var ground;
 var pipeGenerator;
 var kaktusGroup;
 
+
+game.state.add('menu', menuState);
+game.state.add('play', playState);
+game.state.start('menu');
+
+/**
 function preload() {
 	game.load.image('balloon', 'assets/balloon.png');
     game.load.image('kaktus', 'assets/cactus.png');    
@@ -66,3 +72,4 @@ function update() {
     }
 
 }
+**/
