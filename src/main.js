@@ -14,7 +14,7 @@ function create() {
 
     var player;
 
-    player = game.add.sprite(32, game.world.height - 150, 'ballon');
+    player = game.add.sprite(32, game.world.height - 150, 'balloon');
 }
 
 function update() {
