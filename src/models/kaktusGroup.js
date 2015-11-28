@@ -10,3 +10,13 @@ var kaktusGroup = function(game, parent){
 
 kaktusGroup.prototype = Object.create(Phaser.Group.prototype);
 kaktusGroup.prototype.constructor = kaktusGroup;
+
+kaktusGroup.prototype.update = function() {
+  this.nowAlive();
+};
+
+kakstusGroup.prototype.nowAlive = function(){
+	if(!this.topKaktus.inWorld) {
+    	this.exists = false;
+  	}
+}

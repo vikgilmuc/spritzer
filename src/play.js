@@ -4,6 +4,7 @@ var playState = {
 	create: function(){
 
 		score = 0;
+
 	    game.stage.backgroundColor = "0xffffff";
 
 	    sky = game.add.tileSprite(0, 0, game.world.width, 288,'sky');	    
@@ -26,14 +27,7 @@ var playState = {
 	    player.body.gravity.y = -500;    
 	    player.body.collideWorldBounds = true;
 	 
-	    cursors = game.input.keyboard.createCursorKeys();
-
-	    /*
-	    ** SUELO
-	    */
-	    //POSICION X Y, TAMAÑO X, Y	    
-	    
-
+	    cursors = game.input.keyboard.createCursorKeys();	    
 
 	    pipeGenerator = game.time.events.loop(Phaser.Timer.SECOND * 3.25, this.generateKaktus, this);
 	    pipeGenerator.timer.start();
@@ -42,6 +36,8 @@ var playState = {
 	    this.kaktusCollection = game.add.group();
 	    this.kaktusCollection.enableBody = true;
 
+	    pipeGenerator = game.time.events.loop(Phaser.Timer.SECOND * 3.25, this.generateKaktus, this);
+	    pipeGenerator.timer.start();
 	    
 
 	},
@@ -58,6 +54,8 @@ var playState = {
 	    {        
 	        player.body.velocity.y = 200;        
 	    }
+
+	    if (this.score == 0){}
 
 	},
 

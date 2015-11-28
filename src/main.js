@@ -4,7 +4,6 @@ var player;
 var floor;
 var pipeGenerator;
 var score;
-//var kaktusCollection;
 
 game.state.add('boot', bootState);
 game.state.add('load', loadState);
