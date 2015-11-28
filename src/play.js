@@ -1,13 +1,13 @@
 var playState = {
 
-	preload: function(){
-		game.load.image('balloon', 'assets/balloon.png');
-    	game.load.image('kaktus', 'assets/cactus.png');    
-    	game.load.image('pattern', 'assets/pattern.png'); 
-	},
+	//preload: function(){
+		//game.load.image('balloon', 'assets/balloon.png');
+    	//game.load.image('kaktus', 'assets/cactus.png');    
+    	//game.load.image('pattern', 'assets/pattern.png'); 
+	//},
 
 	create: function(){
-		game.physics.startSystem(Phaser.Physics.ARCADE);
+		//game.physics.startSystem(Phaser.Physics.ARCADE);
 	    game.stage.backgroundColor = "0xffffff";
 
 	    player = game.add.sprite(game.world.width / 2 , game.world.height  / 2, 'balloon');
@@ -15,7 +15,7 @@ var playState = {
 	    game.physics.arcade.enable(player);
 
 	    player.body.bounce.y = 0.1;
-	    player.body.gravity.y = -1200;    
+	    player.body.gravity.y = -600;    
 	    player.body.collideWorldBounds = true;
 	 
 	    cursors = game.input.keyboard.createCursorKeys();
@@ -43,7 +43,7 @@ var playState = {
 
 	    if (cursors.left.isDown)
 	    {        
-	        player.body.velocity.y = 400;        
+	        player.body.velocity.y = 200;        
 	    }
 	},
 
@@ -53,6 +53,7 @@ var playState = {
 
 	generateKaktus: function(){
 		kaktus = kaktusGroup.create(800, 0, 'kaktus');
+    	
     	//game.physics.arcade.enable(kaktus);
     	kaktus.body.velocity.x = -250;
 	}
