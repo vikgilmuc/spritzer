@@ -1,6 +1,6 @@
-var kaktusObject = function(game, x, y){
+var kaktusObject = function(game, x, y, type){
 
-	Phaser.Sprite.call(this, game, x, game.world.height - 298, 'kaktus');
+	Phaser.Sprite.call(this, game, x, y, type);
  	
 	game.physics.arcade.enableBody(this);	
 	this.body.immovable = true;

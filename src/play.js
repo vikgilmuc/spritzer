@@ -45,6 +45,7 @@ var playState = {
 	    game.add.text(10,10, 'POINTS: ', { font: '20px Arial', fill: 'red'});
 	    this.scorestring = game.add.text(100,10, '0', { font: '20px Arial', fill: 'red'});
 	    
+	    //SOUNDS
 		this.popSound = game.add.audio('pop');
 		this.pointSound = game.add.audio('point');
 		this.loopSound = game.add.audio('loop');
