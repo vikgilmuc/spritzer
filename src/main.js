@@ -3,7 +3,8 @@ var cursors;
 var player;
 var ground;
 var pipeGenerator;
-var kaktusGroup;
+var score;
+//var kaktusCollection;
 
 game.state.add('boot', bootState);
 game.state.add('load', loadState);

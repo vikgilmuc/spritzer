@@ -1,8 +1,7 @@
 var bootState= {
 
 
-	create : function() {
-		console.log("enboot");
+	create : function() {		
 		game.physics.startSystem(Phaser.Physics.Arcade);
 
 		game.state.start('load');
