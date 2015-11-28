@@ -9,6 +9,9 @@ var loadState= {
 	    	game.load.audio('loop','assets/loop.wav');
 	    	game.load.audio('pop','assets/pop.wav');
 	    	game.load.audio('point','assets/point.wav');
+	    	game.load.image('floor', 'assets/Floor.png');
+	    	game.load.image('pyramids', 'assets/pyramids.png');
+	    	game.load.image('sky', 'assets/sky.png');
 	},
 
 	create: function() {

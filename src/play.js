@@ -6,10 +6,19 @@ var playState = {
 		score = 0;
 	    game.stage.backgroundColor = "0xffffff";
 
-	    player = game.add.sprite(game.world.width / 2 , game.world.height  / 2, 'balloon');
+	    sky = game.add.tileSprite(0, 0, game.world.width, 288,'sky');	    
 
-    	//kaktus_prueba = game.add.sprite(game.world.width / 2 , game.world.height  / 2, 'kaktus');
-	    
+	    pyramids = game.add.tileSprite(0, game.world.height - 378, game.world.width, 378,'pyramids');
+	    pyramids.autoScroll(-40, 0);
+
+
+	    floor = game.add.tileSprite(0, game.world.height - 71, game.world.width, 71,'floor');
+	    floor.autoScroll(-200, 0);
+	    game.physics.arcade.enable(floor);
+	    floor.body.allowGravity = false;   
+	    floor.body.immovable = true;
+
+	    player = game.add.sprite(game.world.width / 2 , game.world.height  / 2, 'balloon');
 
 	    game.physics.arcade.enable(player);
 
@@ -22,16 +31,11 @@ var playState = {
 	    /*
 	    ** SUELO
 	    */
-	    //POSICION X Y, TAMAÑO X, Y
-	    ground = game.add.tileSprite(0, 450, 1024, 32, 'pattern');
-	    ground.autoScroll(-50, 0);
-	    game.physics.arcade.enable(ground);
-	    ground.body.allowGravity = false;   
-	    ground.body.immovable = true;
-
+	    //POSICION X Y, TAMAÑO X, Y	    
 	    
 
-	    pipeGenerator = game.time.events.loop(Phaser.Timer.SECOND * 1.25, this.generateKaktus, this);
+
+	    pipeGenerator = game.time.events.loop(Phaser.Timer.SECOND * 3.25, this.generateKaktus, this);
 	    pipeGenerator.timer.start();
 
     	//KAKTUS COLLECTIONS
@@ -44,7 +48,7 @@ var playState = {
 
 	update: function(){
 
-		//game.physics.arcade.collide(player, ground, this.getColision, null, this);    	
+		game.physics.arcade.collide(player, floor, this.getColision, null, this);    	
 
     	this.kaktusCollection.forEach( function( kaktusGroup ) {
         	game.physics.arcade.collide(player, kaktusGroup, this.getColision, null, this);
