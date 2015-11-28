@@ -3,7 +3,7 @@ var playState = {
 
 	create: function(){
 
-		this.score = 0;
+		score = 0;
 
 	    game.stage.backgroundColor = "0xffffff";
 
@@ -23,16 +23,18 @@ var playState = {
 	    this.kaktusCollection = game.add.group();
 	    this.kaktusCollection.enableBody = true;
 	    
-	    player = game.add.sprite(game.world.width / 2 , game.world.height  / 2, 'balloon');
+	    this.player = game.add.sprite(game.world.width / 2 , game.world.height  / 2, 'balloon');
 
-	    game.physics.arcade.enable(player);
+	    game.physics.arcade.enable(this.player);
 
-	    player.body.bounce.y = 0.1;
-	    player.body.gravity.y = -500;    
-	    player.body.collideWorldBounds = true;	    
-	    player.body.height = 83;
+	    this.player.body.bounce.y = 0.1;
+	    this.player.body.gravity.y = -500;    
+	    this.player.body.collideWorldBounds = true;	    
+	    this.player.body.height = 83;
+	    this.player.animations.add('animation',[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17],10,true);
+	    this.player.animations.play('animation');
 
-	    console.log( player.body.heigh );
+	    console.log( this.player.body.heigh );
 	 
 	    cursors = game.input.keyboard.createCursorKeys();	    
 
@@ -42,8 +44,9 @@ var playState = {
     	
  
     	//SCORE BOARD
-	    game.add.text(10,10, 'POINTS: ', { font: '20px Arial', fill: 'red'});
-	    this.scorestring = game.add.text(100,10, '0', { font: '20px Arial', fill: 'red'});
+	    //game.add.text(10,10, 'POINTS: ', { font: '20px Arial', fill: '#423927'});
+	    game.add.sprite(20,20, 'score');
+	    this.scorestring = game.add.text(130,36, '0', { font: '20px Arial', fill: '#423927'});
 	    
 	    //SOUNDS
 		this.popSound = game.add.audio('pop');
@@ -58,23 +61,23 @@ var playState = {
 
 	update: function(){
 
-		game.physics.arcade.collide(player, floor, this.getColision, null, this);    	
+		game.physics.arcade.collide(this.player, floor, this.getColision, null, this);    	
 
     	this.kaktusCollection.forEach( function( kaktusGroup ) {
-        	game.physics.arcade.collide(player, kaktusGroup, this.getColision, null, this);
+        	game.physics.arcade.collide(this.player, kaktusGroup, this.getColision, null, this);
 
         	if( kaktusGroup.exists && !kaktusGroup.scored && kaktusGroup.onMid ){
         		kaktusGroup.scored = true;
-        		this.score++;
+        		score++;
         		this.pointSound.play();	
-    			this.updateText( this.score ); 
+    			this.updateText( score ); 
     		}
 
     	}, this);
 
 	    if (cursors.left.isDown)
 	    {        
-	        player.body.velocity.y = 200;        
+	        this.player.body.velocity.y = 200;        
 	    }
 
 	   	 	
@@ -87,13 +90,17 @@ var playState = {
 
 	getColision: function(){
 		this.popSound.play();
+		
+		
+		/*
 		game.paused = true;
-		setTimeout( function()
-			{ 
+		setTimeout( 
+			function(){ 
 				game.paused = false;
 			}, 
-			3000);
-		
+			3000
+		);*/
+
 		this.loopSound.stop();
 		game.state.start('gameover');
 		

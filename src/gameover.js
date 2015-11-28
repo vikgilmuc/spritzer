@@ -1,8 +1,10 @@
 var gameOverState = {
 
 	create: function() {
-		var nameLabel = game.add.text(80,80, 'LOOOOOOOSER', { font: '50px Arial', fill: 'red'});
-		var nameLabel = game.add.text(80,200, 'Press "S" to start again madafaka!', { font: '50px Arial', fill: 'red'});
+
+		game.add.sprite(0,0, 'gameover');
+
+		var nameLabel = game.add.text(570,420, score, { font: '40px Arial', fill: '#423927'});
 
 		
 		var sKey = game.input.keyboard.addKey(Phaser.Keyboard.S);
