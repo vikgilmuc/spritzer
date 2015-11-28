@@ -1,9 +1,9 @@
 var kaktusGroup = function(game, parent){
 
 	Phaser.Group.call(this, game, parent);
-
-	this.topKaktus = new kaktusObject( game, game.world.width, 0, 'kaktus-top');
-	this.bottomKaktus = new kaktusObject( game, game.world.width, game.world.height - 298, 'kaktus-bottom');
+	
+	this.topKaktus = new kaktusObject( game, game.world.width, -90, 'kaktus-top');
+	this.bottomKaktus = new kaktusObject( game, game.world.width, game.world.height - 190, 'kaktus-bottom');
 
 	this.add(this.topKaktus);
 	this.add(this.bottomKaktus);

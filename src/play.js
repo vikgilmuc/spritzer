@@ -93,7 +93,10 @@ var playState = {
 	},
 
 	generateKaktus: function(){		
-		this.kaktusCollection.add( new kaktusGroup( game, this.kaktusCollection ) );
+		this.oKaktusGroup = new kaktusGroup( game, this.kaktusCollection )
+
+		this.oKaktusGroup.y = this.game.rnd.integerInRange(-100, 100);
+		this.kaktusCollection.add( this.oKaktusGroup );
 			
 	}
 }
