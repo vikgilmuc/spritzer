@@ -36,7 +36,7 @@ var playState = {
 	 
 	    cursors = game.input.keyboard.createCursorKeys();	    
 
-	    pipeGenerator = game.time.events.loop(Phaser.Timer.SECOND * 3.25, this.generateKaktus, this);
+	    pipeGenerator = game.time.events.loop(Phaser.Timer.SECOND * 2.15, this.generateKaktus, this);
 	    pipeGenerator.timer.start();
 
     	
@@ -87,15 +87,23 @@ var playState = {
 
 	getColision: function(){
 		this.popSound.play();
-		game.state.start('gameover');
+		game.paused = true;
+		setTimeout( function()
+			{ 
+				game.paused = false;
+			}, 
+			3000);
+		
 		this.loopSound.stop();
+		game.state.start('gameover');
+		
 
 	},
 
 	generateKaktus: function(){		
 		this.oKaktusGroup = new kaktusGroup( game, this.kaktusCollection )
 
-		this.oKaktusGroup.y = this.game.rnd.integerInRange(-100, 100);
+		//this.oKaktusGroup.y = this.game.rnd.integerInRange(-100, 100);
 		this.kaktusCollection.add( this.oKaktusGroup );
 			
 	}

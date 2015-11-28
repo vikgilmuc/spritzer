@@ -1,9 +1,11 @@
 var kaktusGroup = function(game, parent){
 
 	Phaser.Group.call(this, game, parent);
-	
-	this.topKaktus = new kaktusObject( game, game.world.width, -90, 'kaktus-top');
-	this.bottomKaktus = new kaktusObject( game, game.world.width, game.world.height - 190, 'kaktus-bottom');
+		
+	this.randomType = new randomType( game );
+
+	this.topKaktus = new kaktusObject( game, game.world.width, this.randomType.getTopY(), this.randomType.getTopFileName());
+	this.bottomKaktus = new kaktusObject( game, game.world.width, this.randomType.getBottomY() , this.randomType.getBottomFileName());
 
 	this.add(this.topKaktus);
 	this.add(this.bottomKaktus);
@@ -25,7 +27,8 @@ kaktusGroup.prototype.update = function() {
 kaktusGroup.prototype.nowAlive = function(){
 
 	if(!this.topKaktus.inWorld) {	
-    	this.exists = false;    	
+    	this.exists = false; 
+    	this.destroy();   	
   	}
 
 }
