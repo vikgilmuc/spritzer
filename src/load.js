@@ -6,7 +6,9 @@ var loadState= {
 			game.load.image('balloon', 'assets/balloon.png');
 	    	game.load.image('kaktus', 'assets/Cactus_1_Bottom.png');    
 	    	game.load.image('pattern', 'assets/pattern.png'); 
-
+	    	game.load.audio('loop','assets/loop.wav');
+	    	game.load.audio('pop','assets/pop.wav');
+	    	game.load.audio('point','assets/point.wav');
 	},
 
 	create: function() {
