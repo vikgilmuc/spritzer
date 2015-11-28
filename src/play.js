@@ -45,11 +45,11 @@ var playState = {
 	    game.add.text(10,10, 'POINTS: ', { font: '20px Arial', fill: 'red'});
 	    this.scorestring = game.add.text(100,10, '0', { font: '20px Arial', fill: 'red'});
 	    
-		popSound = game.add.audio('pop');
-		pointSound = game.add.audio('point');
-		loopSound = game.add.audio('loop');
-		loopSound.loop= true;
-		loopSound.play();
+		this.popSound = game.add.audio('pop');
+		this.pointSound = game.add.audio('point');
+		this.loopSound = game.add.audio('loop');
+		this.loopSound.loop= true;
+		this.loopSound.play();
 
 
 
@@ -64,7 +64,8 @@ var playState = {
 
         	if( kaktusGroup.exists && !kaktusGroup.scored && kaktusGroup.onMid ){
         		kaktusGroup.scored = true;
-        		this.score++;	
+        		this.score++;
+        		this.pointSound.play();	
     			this.updateText( this.score ); 
     		}
 
@@ -84,13 +85,13 @@ var playState = {
 	},
 
 	getColision: function(){
-		popSound.play();
+		this.popSound.play();
 		game.state.start('gameover');
+		this.loopSound.stop();
 
 	},
 
-	generateKaktus: function(){
-		pointSound.play();
+	generateKaktus: function(){		
 		this.kaktusCollection.add( new kaktusGroup( game, this.kaktusCollection ) );
 			
 	}
