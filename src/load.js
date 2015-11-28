@@ -3,7 +3,7 @@ var loadState= {
 	preload: function(){
 
 		var loadingLabel = game.add.text(80, 150, 'loading ...',{font: '30px Courier', fill:'#ffffff'});
-			game.load.spritesheet('balloon', 'assets/Balloon_Animation/Balloon_Animation_SpriteSheet.png',60,159,18);
+			game.load.spritesheet('balloon', 'assets/Balloon_Animation/Balloon_Explotion_SpriteSheet.png',60,159,19);
 	    	game.load.image('kaktus-bottom-1', 'assets/Cactus_1_Bottom.png');    
 	    	game.load.image('kaktus-top-1', 'assets/Cactus_1_Top.png');    
 	    	game.load.image('kaktus-bottom-2', 'assets/Cactus_2_Bottom.png');    

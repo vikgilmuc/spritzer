@@ -32,6 +32,7 @@ var playState = {
 	    this.player.body.collideWorldBounds = true;	    
 	    this.player.body.height = 83;
 	    this.player.animations.add('animation',[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17],10,true);
+	    this.player.animations.add('crash',[17,18],10,true);
 	    this.player.animations.play('animation');
 
 	    console.log( this.player.body.heigh );
@@ -90,16 +91,16 @@ var playState = {
 
 	getColision: function(){
 		this.popSound.play();
+		this.player.animations.play('crash');
 		
 		
-		/*
 		game.paused = true;
 		setTimeout( 
 			function(){ 
 				game.paused = false;
 			}, 
 			3000
-		);*/
+		);
 
 		this.loopSound.stop();
 		game.state.start('gameover');
