@@ -93,14 +93,14 @@ var playState = {
 		this.popSound.play();
 		this.player.animations.play('crash');
 		
-		
+		/*	
 		game.paused = true;
 		setTimeout( 
 			function(){ 
 				game.paused = false;
 			}, 
 			3000
-		);
+		);*/
 
 		this.loopSound.stop();
 		game.state.start('gameover');
