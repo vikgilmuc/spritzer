@@ -39,6 +39,13 @@ var playState = {
 	    pipeGenerator = game.time.events.loop(Phaser.Timer.SECOND * 3.25, this.generateKaktus, this);
 	    pipeGenerator.timer.start();
 	    
+		popSound = game.add.audio('pop');
+		pointSound = game.add.audio('point');
+		loopSound = game.add.audio('loop');
+		loopSound.loop= true;
+		loopSound.play();
+
+
 
 	},
 
@@ -60,13 +67,13 @@ var playState = {
 	},
 
 	getColision: function(){
-
+		popSound.play();
 		game.state.start('gameover');
 
 	},
 
 	generateKaktus: function(){
-
+		pointSound.play();
 		this.kaktusCollection.add( new kaktusGroup( game, this.kaktusCollection ) );
 		
 
