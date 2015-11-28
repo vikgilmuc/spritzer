@@ -3,7 +3,7 @@ var playState = {
 
 	create: function(){
 
-		score = 0;
+		this.score = 0;
 
 	    game.stage.backgroundColor = "0xffffff";
 
@@ -19,25 +19,31 @@ var playState = {
 	    floor.body.allowGravity = false;   
 	    floor.body.immovable = true;
 
+	    //KAKTUS COLLECTIONS
+	    this.kaktusCollection = game.add.group();
+	    this.kaktusCollection.enableBody = true;
+	    
 	    player = game.add.sprite(game.world.width / 2 , game.world.height  / 2, 'balloon');
 
 	    game.physics.arcade.enable(player);
 
 	    player.body.bounce.y = 0.1;
 	    player.body.gravity.y = -500;    
-	    player.body.collideWorldBounds = true;
+	    player.body.collideWorldBounds = true;	    
+	    player.body.height = 83;
+
+	    console.log( player.body.heigh );
 	 
 	    cursors = game.input.keyboard.createCursorKeys();	    
 
 	    pipeGenerator = game.time.events.loop(Phaser.Timer.SECOND * 3.25, this.generateKaktus, this);
 	    pipeGenerator.timer.start();
 
-    	//KAKTUS COLLECTIONS
-	    this.kaktusCollection = game.add.group();
-	    this.kaktusCollection.enableBody = true;
-
-	    pipeGenerator = game.time.events.loop(Phaser.Timer.SECOND * 3.25, this.generateKaktus, this);
-	    pipeGenerator.timer.start();
+    	
+ 
+    	//SCORE BOARD
+	    game.add.text(10,10, 'POINTS: ', { font: '20px Arial', fill: 'red'});
+	    this.scorestring = game.add.text(100,10, '0', { font: '20px Arial', fill: 'red'});
 	    
 		popSound = game.add.audio('pop');
 		pointSound = game.add.audio('point');
@@ -55,6 +61,13 @@ var playState = {
 
     	this.kaktusCollection.forEach( function( kaktusGroup ) {
         	game.physics.arcade.collide(player, kaktusGroup, this.getColision, null, this);
+
+        	if( kaktusGroup.exists && !kaktusGroup.scored && kaktusGroup.onMid ){
+        		kaktusGroup.scored = true;
+        		this.score++;	
+    			this.updateText( this.score ); 
+    		}
+
     	}, this);
 
 	    if (cursors.left.isDown)
@@ -62,8 +75,12 @@ var playState = {
 	        player.body.velocity.y = 200;        
 	    }
 
-	    if (this.score == 0){}
+	   	 	
+	},
+	
 
+	updateText: function( score ){
+    	this.scorestring.setText( score.toString() );
 	},
 
 	getColision: function(){
@@ -75,7 +92,6 @@ var playState = {
 	generateKaktus: function(){
 		pointSound.play();
 		this.kaktusCollection.add( new kaktusGroup( game, this.kaktusCollection ) );
-		
-
+			
 	}
 }
